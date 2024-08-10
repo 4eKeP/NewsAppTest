@@ -1,7 +1,39 @@
 {
   "sourceLanguage" : "ru",
   "strings" : {
-
+    "Tab.FavTitle" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favourite"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избранное "
+          }
+        }
+      }
+    },
+    "Tab.ListTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "News list"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лист новостей"
+          }
+        }
+      }
+    }
   },
   "version" : "1.0"
 }
