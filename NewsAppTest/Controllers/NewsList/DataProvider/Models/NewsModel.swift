@@ -10,8 +10,9 @@ import Foundation
 struct NewsModel {
     let newsID: String
     let image: URL?
-    let author: String
+    let title: String
+    let author: String?
     let createdAt: Date?
-    let description: String
+    let description: String?
     let sourceLink: URL
 }

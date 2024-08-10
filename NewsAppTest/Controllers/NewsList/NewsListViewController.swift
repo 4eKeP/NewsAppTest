@@ -14,7 +14,5 @@ class NewsListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
     }
-
-
 }
 
