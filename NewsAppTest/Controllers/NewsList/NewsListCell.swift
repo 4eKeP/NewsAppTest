@@ -20,7 +20,7 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
         return image
     }()
     
-    lazy var autorLabel = {
+    lazy var authorLabel = {
         let label = UILabel()
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +60,8 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func makeCell() {
+    func makeCell(news: NewsModel) {
+        authorLabel.text = news.author
         
     }
 }
@@ -68,7 +69,7 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
 private extension NewsListCell {
     func configCell() {
         contentView.addSubview(cellImage)
-        contentView.addSubview(autorLabel)
+        contentView.addSubview(authorLabel)
         contentView.addSubview(dateLabel)
         contentView.addSubview(descriptionLabel)
         contentView.backgroundColor = .systemBackground
@@ -79,11 +80,11 @@ private extension NewsListCell {
             cellImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             cellImage.heightAnchor.constraint(equalToConstant: cellImageHeight),
             
-            autorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            autorLabel.topAnchor.constraint(equalTo: cellImage.bottomAnchor, constant: cellLabelSpacing),
+            authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            authorLabel.topAnchor.constraint(equalTo: cellImage.bottomAnchor, constant: cellLabelSpacing),
         
             dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            dateLabel.topAnchor.constraint(equalTo: autorLabel.bottomAnchor, constant: cellLabelSpacing),
+            dateLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: cellLabelSpacing),
             
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: cellLabelSpacing)
