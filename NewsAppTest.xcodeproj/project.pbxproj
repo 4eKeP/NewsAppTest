@@ -19,6 +19,10 @@
 		841E95302C679A44007CD571 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 841E952F2C679A44007CD571 /* Kingfisher */; };
 		841E95322C679BB5007CD571 /* NewsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95312C679BB5007CD571 /* NewsListCell.swift */; };
 		841E95352C679C1A007CD571 /* ReuseIdentifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95342C679C1A007CD571 /* ReuseIdentifying.swift */; };
+		841E95382C67BB8D007CD571 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95372C67BB8D007CD571 /* NetworkClient.swift */; };
+		841E953A2C67BB9D007CD571 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95392C67BB9D007CD571 /* NetworkRequest.swift */; };
+		841E953C2C67BBCF007CD571 /* NetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E953B2C67BBCF007CD571 /* NetworkTask.swift */; };
+		841E953E2C67BBE0007CD571 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E953D2C67BBE0007CD571 /* NetworkConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +39,10 @@
 		841E95282C678E8A007CD571 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		841E95312C679BB5007CD571 /* NewsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListCell.swift; sourceTree = "<group>"; };
 		841E95342C679C1A007CD571 /* ReuseIdentifying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifying.swift; sourceTree = "<group>"; };
+		841E95372C67BB8D007CD571 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		841E95392C67BB9D007CD571 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		841E953B2C67BBCF007CD571 /* NetworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTask.swift; sourceTree = "<group>"; };
+		841E953D2C67BBE0007CD571 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +80,7 @@
 				841E95082C67754F007CD571 /* AppDelegate.swift */,
 				841E950A2C67754F007CD571 /* SceneDelegate.swift */,
 				841E952D2C679456007CD571 /* Controllers */,
-				841E95332C679BF3007CD571 /* Utilities */,
+				841E95332C679BF3007CD571 /* Services */,
 				841E95142C677551007CD571 /* Assets.xcassets */,
 				841E95192C677551007CD571 /* Info.plist */,
 				841E95112C67754F007CD571 /* NewsAppTest.xcdatamodeld */,
@@ -124,12 +132,24 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		841E95332C679BF3007CD571 /* Utilities */ = {
+		841E95332C679BF3007CD571 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				841E95362C67BB62007CD571 /* NetworkClient */,
 				841E95342C679C1A007CD571 /* ReuseIdentifying.swift */,
 			);
-			path = Utilities;
+			path = Services;
+			sourceTree = "<group>";
+		};
+		841E95362C67BB62007CD571 /* NetworkClient */ = {
+			isa = PBXGroup;
+			children = (
+				841E95372C67BB8D007CD571 /* NetworkClient.swift */,
+				841E95392C67BB9D007CD571 /* NetworkRequest.swift */,
+				841E953B2C67BBCF007CD571 /* NetworkTask.swift */,
+				841E953D2C67BBE0007CD571 /* NetworkConstants.swift */,
+			);
+			path = NetworkClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,13 +229,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				841E953E2C67BBE0007CD571 /* NetworkConstants.swift in Sources */,
 				841E950D2C67754F007CD571 /* NewsListViewController.swift in Sources */,
+				841E953C2C67BBCF007CD571 /* NetworkTask.swift in Sources */,
+				841E95382C67BB8D007CD571 /* NetworkClient.swift in Sources */,
 				841E95352C679C1A007CD571 /* ReuseIdentifying.swift in Sources */,
 				841E95092C67754F007CD571 /* AppDelegate.swift in Sources */,
 				841E95292C678E8A007CD571 /* FavouritesViewController.swift in Sources */,
 				841E95202C6784D6007CD571 /* ControllerFactory.swift in Sources */,
 				841E95222C67852B007CD571 /* TabBarController.swift in Sources */,
 				841E95132C67754F007CD571 /* NewsAppTest.xcdatamodeld in Sources */,
+				841E953A2C67BB9D007CD571 /* NetworkRequest.swift in Sources */,
 				841E95322C679BB5007CD571 /* NewsListCell.swift in Sources */,
 				841E950B2C67754F007CD571 /* SceneDelegate.swift in Sources */,
 			);
