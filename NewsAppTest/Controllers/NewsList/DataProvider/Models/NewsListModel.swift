@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NewsListModel {
+struct NewsListModel: Codable {
     let nextPageID: String
     let newsList: [NewsModelResult]
 }

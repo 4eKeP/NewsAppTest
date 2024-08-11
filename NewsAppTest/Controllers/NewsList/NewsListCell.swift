@@ -62,7 +62,22 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
     
     func makeCell(news: NewsModel) {
         authorLabel.text = news.author
+        dateLabel.text = news.createdAt?.description
+        descriptionLabel.text = news.description
         
+        if news.image != nil {
+            cellImage.kf.setImage(with: news.image) { [weak self] result in
+                switch result {
+                case .success(_):
+                    break
+                case .failure(_):
+                    let errorImage = UIImage(systemName: "photo")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+                    self?.cellImage.image = errorImage
+                }
+            }
+        } else {
+            cellImage.isHidden = true
+        }
     }
 }
 

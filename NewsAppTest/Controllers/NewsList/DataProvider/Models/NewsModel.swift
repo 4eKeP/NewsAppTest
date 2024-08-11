@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NewsModel {
+struct NewsModel: Codable, Hashable {
     let newsID: String
     let image: URL?
     let title: String
@@ -15,4 +15,8 @@ struct NewsModel {
     let createdAt: Date?
     let description: String?
     let sourceLink: URL
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(newsID)
+    }
 }

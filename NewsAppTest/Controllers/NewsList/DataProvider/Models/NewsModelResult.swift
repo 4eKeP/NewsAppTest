@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NewsModelResult {
+struct NewsModelResult: Codable {
     
     static let dateFormatter = ISO8601DateFormatter()
     

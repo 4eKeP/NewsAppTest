@@ -29,6 +29,9 @@
 		841E95482C67D7C0007CD571 /* NewsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95472C67D7C0007CD571 /* NewsListModel.swift */; };
 		841E954B2C67D817007CD571 /* NewsModelResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E954A2C67D817007CD571 /* NewsModelResult.swift */; };
 		841E954D2C67E17B007CD571 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E954C2C67E17B007CD571 /* NewsModel.swift */; };
+		841E954F2C689EF4007CD571 /* NewsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E954E2C689EF4007CD571 /* NewsListPresenter.swift */; };
+		841E95522C68B14C007CD571 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 841E95512C68B14C007CD571 /* ProgressHUD */; };
+		841E95542C68B300007CD571 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95532C68B300007CD571 /* ErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,8 @@
 		841E95472C67D7C0007CD571 /* NewsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListModel.swift; sourceTree = "<group>"; };
 		841E954A2C67D817007CD571 /* NewsModelResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModelResult.swift; sourceTree = "<group>"; };
 		841E954C2C67E17B007CD571 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
+		841E954E2C689EF4007CD571 /* NewsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListPresenter.swift; sourceTree = "<group>"; };
+		841E95532C68B300007CD571 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				841E95302C679A44007CD571 /* Kingfisher in Frameworks */,
+				841E95522C68B14C007CD571 /* ProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +136,7 @@
 			children = (
 				841E953F2C67D1C5007CD571 /* DataProvider */,
 				841E950C2C67754F007CD571 /* NewsListViewController.swift */,
+				841E954E2C689EF4007CD571 /* NewsListPresenter.swift */,
 				841E95312C679BB5007CD571 /* NewsListCell.swift */,
 			);
 			path = NewsList;
@@ -150,6 +157,7 @@
 			children = (
 				841E95362C67BB62007CD571 /* NetworkClient */,
 				841E95342C679C1A007CD571 /* ReuseIdentifying.swift */,
+				841E95532C68B300007CD571 /* ErrorView.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -212,6 +220,7 @@
 			name = NewsAppTest;
 			packageProductDependencies = (
 				841E952F2C679A44007CD571 /* Kingfisher */,
+				841E95512C68B14C007CD571 /* ProgressHUD */,
 			);
 			productName = NewsAppTest;
 			productReference = 841E95052C67754F007CD571 /* NewsAppTest.app */;
@@ -244,6 +253,7 @@
 			mainGroup = 841E94FC2C67754F007CD571;
 			packageReferences = (
 				841E952E2C679A44007CD571 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				841E95502C68B14C007CD571 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 			);
 			productRefGroup = 841E95062C67754F007CD571 /* Products */;
 			projectDirPath = "";
@@ -275,6 +285,7 @@
 				841E95482C67D7C0007CD571 /* NewsListModel.swift in Sources */,
 				841E950D2C67754F007CD571 /* NewsListViewController.swift in Sources */,
 				841E95462C67D555007CD571 /* NewsListDataProvider.swift in Sources */,
+				841E95542C68B300007CD571 /* ErrorView.swift in Sources */,
 				841E954B2C67D817007CD571 /* NewsModelResult.swift in Sources */,
 				841E95412C67D1EE007CD571 /* InitialNewsRequest.swift in Sources */,
 				841E953C2C67BBCF007CD571 /* NetworkTask.swift in Sources */,
@@ -282,6 +293,7 @@
 				841E954D2C67E17B007CD571 /* NewsModel.swift in Sources */,
 				841E95352C679C1A007CD571 /* ReuseIdentifying.swift in Sources */,
 				841E95092C67754F007CD571 /* AppDelegate.swift in Sources */,
+				841E954F2C689EF4007CD571 /* NewsListPresenter.swift in Sources */,
 				841E95432C67D4BB007CD571 /* NextPageNewsRequest.swift in Sources */,
 				841E95292C678E8A007CD571 /* FavouritesViewController.swift in Sources */,
 				841E95202C6784D6007CD571 /* ControllerFactory.swift in Sources */,
@@ -507,6 +519,14 @@
 				minimumVersion = 7.12.0;
 			};
 		};
+		841E95502C68B14C007CD571 /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -514,6 +534,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 841E952E2C679A44007CD571 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		841E95512C68B14C007CD571 /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 841E95502C68B14C007CD571 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 
