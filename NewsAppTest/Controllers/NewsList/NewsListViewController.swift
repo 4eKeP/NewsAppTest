@@ -32,12 +32,17 @@ class NewsListViewController: UIViewController, ErrorView {
             })
     }()
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refControl = UIRefreshControl()
+        refControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return refControl
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(NewsListCell.self)
         tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
-      //  tableView.rowHeight = 300
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
@@ -57,12 +62,29 @@ class NewsListViewController: UIViewController, ErrorView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
-        presenter.viewDidLoad()
+        refresh()
+    }
+    
+    @objc func refresh() {
+        presenter.loadInitialNews()
+        refreshControl.endRefreshing()
     }
 }
+
+
 
 //MARK: - UITableViewDelegate
 extension NewsListViewController: UITableViewDelegate {
@@ -71,8 +93,8 @@ extension NewsListViewController: UITableViewDelegate {
         presenter.newsSelected(atRow: indexPath.row)
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        presenter.fetchNextPageIfNeeded(indexPath: indexPath)
     }
 }
 
@@ -92,6 +114,7 @@ extension NewsListViewController {
     func configUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
+        tableView.refreshControl = refreshControl
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: tableViewSpacing),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: tableViewSpacing),

@@ -18,7 +18,7 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
     
     private let cellView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .lightGray.withAlphaComponent(0.5)
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 16
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +57,7 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
         let label = UILabel()
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         label.textColor = .black
         return label
     }()
@@ -76,9 +76,9 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
     }
     
     func makeCell(news: NewsModel) {
-        authorLabel.text = news.author?.joined()
-        dateLabel.text = dateFormatter.string(from: news.createdAt)
-        descriptionLabel.text = news.title
+        authorLabel.text = "\(String(localized: "Cell.Author")): \(news.author?.joined() ?? (String(localized: "Cell.NoAuthor")))"
+        dateLabel.text = "\(String(localized: "Cell.Date")): \(dateFormatter.string(from: news.createdAt))"
+        descriptionLabel.text = "\(String(localized: "Cell.Title")): \(news.title)"
         
         if news.image != nil {
             cellImage.kf.setImage(with: news.image) { [weak self] result in
@@ -91,7 +91,8 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
                 }
             }
         } else {
-            cellImage.isHidden = true
+            let errorImage = UIImage(systemName: "photo")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+            self.cellImage.image = errorImage
         }
     }
 }
@@ -107,30 +108,30 @@ private extension NewsListCell {
         
         NSLayoutConstraint.activate([
             
-            cellView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
+            cellView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: cellLabelSpacing),
             cellView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             cellView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            cellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6),
+            cellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -cellLabelSpacing),
             
-            cellImage.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 6),
-            cellImage.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 6),
-            cellImage.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -6),
+            cellImage.topAnchor.constraint(equalTo: cellView.topAnchor, constant: cellLabelSpacing),
+            cellImage.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: cellLabelSpacing),
+            cellImage.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -cellLabelSpacing),
             cellImage.heightAnchor.constraint(equalToConstant: cellImageHeight),
             
-            authorLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 6),
-            authorLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -6),
+            authorLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: cellLabelSpacing),
+            authorLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -cellLabelSpacing),
             authorLabel.bottomAnchor.constraint(equalTo: dateLabel.topAnchor, constant: -cellLabelSpacing),
             authorLabel.topAnchor.constraint(equalTo: cellImage.bottomAnchor, constant: cellLabelSpacing),
         
-            dateLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 6),
-            dateLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -6),
+            dateLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: cellLabelSpacing),
+            dateLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -cellLabelSpacing),
             dateLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: cellLabelSpacing),
             dateLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -cellLabelSpacing),
             
-            descriptionLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 6),
-            descriptionLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -6),
+            descriptionLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: cellLabelSpacing),
+            descriptionLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -cellLabelSpacing),
             descriptionLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: cellLabelSpacing),
-            descriptionLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -6)
+            descriptionLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -cellLabelSpacing)
         ])
     }
 }

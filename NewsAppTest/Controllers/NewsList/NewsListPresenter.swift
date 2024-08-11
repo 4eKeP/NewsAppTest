@@ -8,8 +8,9 @@
 import Foundation
 
 protocol NewsListPresenterProtocol {
-    func viewDidLoad()
+    func loadInitialNews()
     func newsSelected(atRow: Int)
+    func fetchNextPageIfNeeded(indexPath: IndexPath)
 }
 
 final class NewsListPresenter: NewsListPresenterProtocol {
@@ -22,7 +23,7 @@ final class NewsListPresenter: NewsListPresenterProtocol {
         self.dataProvider = dataProvider
     }
     
-    func viewDidLoad() {
+    func loadInitialNews() {
         loadNews()
     }
     
@@ -41,6 +42,22 @@ final class NewsListPresenter: NewsListPresenterProtocol {
             case .failure(_):
                 newsListController?.showError(ErrorModel {[weak self] in self?.loadNews()
                 })
+            }
+        }
+    }
+    
+    func fetchNextPageIfNeeded(indexPath: IndexPath) {
+        if indexPath.row + 1 == dataProvider.newsList.count {
+            dataProvider.fetchNewsListCollection(requestType: .nextPageReqoest) { [weak self] result in
+                UIBlockingProgressHUD.dismiss()
+                guard let self else { return }
+                switch result {
+                case .success(_):
+                    newsListController?.updateData(with: self.dataProvider.newsList)
+                case .failure(_):
+                    newsListController?.showError(ErrorModel {[weak self] in self?.loadNews()
+                    })
+                }
             }
         }
     }
