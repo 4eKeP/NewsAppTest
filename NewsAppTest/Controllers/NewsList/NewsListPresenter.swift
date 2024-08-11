@@ -24,6 +24,7 @@ final class NewsListPresenter: NewsListPresenterProtocol {
     }
     
     func loadInitialNews() {
+        dataProvider.emptyNewsList()
         loadNews()
     }
     
@@ -48,7 +49,7 @@ final class NewsListPresenter: NewsListPresenterProtocol {
     
     func fetchNextPageIfNeeded(indexPath: IndexPath) {
         if indexPath.row + 1 == dataProvider.newsList.count {
-            dataProvider.fetchNewsListCollection(requestType: .nextPageReqoest) { [weak self] result in
+            dataProvider.fetchNewsListCollection(requestType: .nextPageRequest) { [weak self] result in
                 UIBlockingProgressHUD.dismiss()
                 guard let self else { return }
                 switch result {
