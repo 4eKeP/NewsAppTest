@@ -17,7 +17,11 @@ final class ControllerFactory {
     func setupController(of type: ControllerType) -> UINavigationController {
         switch type {
         case .newsListViewController:
-            let newsListController = NewsListViewController()
+            let networkClient = DefaultNetworkClient()
+            let dataProvider = NewsListDataProvider(networkClient: networkClient)
+            let newsListPresenter = NewsListPresenter(dataProvider: dataProvider)
+            let newsListController = NewsListViewController(presenter: newsListPresenter)
+            newsListPresenter.newsListController = newsListController
             let newsListNavItem = createNavigation(
                 with: String(localized: "Tab.ListTitle"),
                 and: UIImage(systemName: "square.stack"),

@@ -48,11 +48,14 @@ final class NewsListDataProvider: NewsListDataProviderProtocol {
             guard let self = self else { return }
             switch result {
             case .success(let list):
+//                print(list.results)
+//                print(list.nextPage)
          //       newsListResult = list.newsList
-                nextPageID = list.nextPageID
-                list.newsList.forEach { news in
+                nextPageID = list.nextPage
+                list.results.forEach { news in
                     self.newsList.append(news.asDomain())
                 }
+               // print(newsList)
                 completion(.success(list))
             case .failure(let error):
                 completion(.failure(error))

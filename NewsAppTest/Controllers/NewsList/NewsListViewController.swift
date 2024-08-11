@@ -21,14 +21,15 @@ class NewsListViewController: UIViewController, ErrorView {
     }
     
     private lazy var dataSource: UITableViewDiffableDataSource<Section, NewsModel> = {
-        UITableViewDiffableDataSource<Section, NewsModel>(tableView: tableView,
-                                                          cellProvider: {[weak self] (tableView, indexPath, news) -> UITableViewCell? in
-            guard let self else { return UITableViewCell()}
-            let cell: NewsListCell = tableView.dequeueReusableCell()
-            cell.makeCell(news: news)
-            cell.selectionStyle = .default
-            return cell
-        })
+        UITableViewDiffableDataSource<Section, NewsModel>(
+            tableView: tableView,
+            cellProvider: {[weak self] (tableView, indexPath, news) -> UITableViewCell? in
+                guard let self else { return UITableViewCell()}
+                let cell: NewsListCell = tableView.dequeueReusableCell()
+                cell.makeCell(news: news)
+                cell.selectionStyle = .default
+                return cell
+            })
     }()
     
     private lazy var tableView: UITableView = {
@@ -36,14 +37,18 @@ class NewsListViewController: UIViewController, ErrorView {
         tableView.register(NewsListCell.self)
         tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
-        tableView.rowHeight = 150
-        tableView.separatorStyle = .singleLine
+      //  tableView.rowHeight = 300
+        tableView.estimatedRowHeight = 300
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
+        tableView.separatorInset = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
     private let tableViewSpacing: CGFloat = 16
     
-    init(presenter: NewsListPresenterProtocol) {
+    init(presenter: NewsListPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -64,6 +69,10 @@ extension NewsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         presenter.newsSelected(atRow: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
 
@@ -86,9 +95,12 @@ extension NewsListViewController {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: tableViewSpacing),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: tableViewSpacing),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: tableViewSpacing),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: tableViewSpacing),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -tableViewSpacing),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -tableViewSpacing),
         ])
+        
+     //   tableView.estimatedRowHeight = 44
+      //  tableView.rowHeight = UITableView.automaticDimension
     }
 }
 

@@ -12,16 +12,22 @@ struct NewsModelResult: Codable {
     static let dateFormatter = ISO8601DateFormatter()
     
     let articleID: String
-    let imageUrl: URL?
+    let imageURL: URL?
     let title: String
-    let creator: String?
+    let creator: [String]?
     let pubDate: String?
     let description: String?
     let link: URL
     
+    enum CodingKeys: String, CodingKey {
+        case articleID = "article_id"
+        case imageURL = "image_url"
+        case title, link, creator, description, pubDate
+    }
+    
     func asDomain() -> NewsModel {
         let news = NewsModel(newsID: self.articleID,
-                             image: self.imageUrl, 
+                             image: self.imageURL,
                              title: self.title,
                              author: self.creator,
                              createdAt: self.makeDate(body: self),
@@ -30,8 +36,11 @@ struct NewsModelResult: Codable {
         return news
     }
     
-    private func makeDate(body: NewsModelResult) -> Date? {
-        return body.pubDate.flatMap { NewsModelResult.dateFormatter.date(from: $0) }
+    
+    private func makeDate(body: NewsModelResult) -> Date {
+        var dateValue = body.pubDate.flatMap { NewsModelResult.dateFormatter.date(from: $0) }
+        guard let dateValue = dateValue else { return Date()}
+        return dateValue
     }
 }
 

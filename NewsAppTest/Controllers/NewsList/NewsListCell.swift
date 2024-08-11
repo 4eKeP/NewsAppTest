@@ -10,6 +10,21 @@ import Kingfisher
 
 final class NewsListCell: UITableViewCell, ReuseIdentifying {
     
+    private lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter
+    }()
+    
+    private let cellView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 16
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     lazy var cellImage = {
         let image = UIImageView()
         image.layer.masksToBounds = true
@@ -22,7 +37,7 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
     
     lazy var authorLabel = {
         let label = UILabel()
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 15)
         label.textColor = .black
@@ -31,7 +46,7 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
     
     lazy var dateLabel = {
         let label = UILabel()
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 15)
         label.textColor = .black
@@ -48,7 +63,7 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
     }()
     
     static let newsListCellReuseIdentifier = "NewsListCellReuseIdentifier"
-    private let cellImageHeight: CGFloat = 140
+    private let cellImageHeight: CGFloat = 180
     private let cellLabelSpacing: CGFloat = 8
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -61,9 +76,9 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
     }
     
     func makeCell(news: NewsModel) {
-        authorLabel.text = news.author
-        dateLabel.text = news.createdAt?.description
-        descriptionLabel.text = news.description
+        authorLabel.text = news.author?.joined()
+        dateLabel.text = dateFormatter.string(from: news.createdAt)
+        descriptionLabel.text = news.title
         
         if news.image != nil {
             cellImage.kf.setImage(with: news.image) { [weak self] result in
@@ -83,26 +98,39 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
 
 private extension NewsListCell {
     func configCell() {
-        contentView.addSubview(cellImage)
-        contentView.addSubview(authorLabel)
-        contentView.addSubview(dateLabel)
-        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(cellView)
+        cellView.addSubview(cellImage)
+        cellView.addSubview(authorLabel)
+        cellView.addSubview(dateLabel)
+        cellView.addSubview(descriptionLabel)
         contentView.backgroundColor = .systemBackground
         
         NSLayoutConstraint.activate([
-            cellImage.topAnchor.constraint(equalTo: contentView.topAnchor),
-            cellImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            cellImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            cellView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
+            cellView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            cellView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            cellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6),
+            
+            cellImage.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 6),
+            cellImage.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 6),
+            cellImage.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -6),
             cellImage.heightAnchor.constraint(equalToConstant: cellImageHeight),
             
-            authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            authorLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 6),
+            authorLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -6),
+            authorLabel.bottomAnchor.constraint(equalTo: dateLabel.topAnchor, constant: -cellLabelSpacing),
             authorLabel.topAnchor.constraint(equalTo: cellImage.bottomAnchor, constant: cellLabelSpacing),
         
-            dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            dateLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 6),
+            dateLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -6),
             dateLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: cellLabelSpacing),
+            dateLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -cellLabelSpacing),
             
-            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            descriptionLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: cellLabelSpacing)
+            descriptionLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 6),
+            descriptionLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -6),
+            descriptionLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: cellLabelSpacing),
+            descriptionLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -6)
         ])
     }
 }

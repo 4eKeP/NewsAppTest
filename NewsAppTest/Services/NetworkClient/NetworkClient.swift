@@ -70,6 +70,7 @@ struct DefaultNetworkClient: NetworkClient {
         guard let urlRequest = create(request: request) else { return nil }
 
         let task = session.dataTask(with: urlRequest) { data, response, error in
+    //        print(response)
             guard let response = response as? HTTPURLResponse else {
                 onResponse(.failure(NetworkClientError.urlSessionError))
                 return
@@ -107,6 +108,7 @@ struct DefaultNetworkClient: NetworkClient {
         return send(request: request, completionQueue: completionQueue) { result in
             switch result {
             case let .success(data):
+  //              print("Data\(String(data: data, encoding: String.Encoding.utf8))")
                 self.parse(data: data, type: type, onResponse: onResponse)
             case let .failure(error):
                 onResponse(.failure(error))
@@ -128,12 +130,8 @@ struct DefaultNetworkClient: NetworkClient {
         if let dto = request.dto,
            let dtoEncoded = try? encoder.encode(dto) {
 
-//            urlRequest.setValue(NetworkConstants.acceptValue, forHTTPHeaderField: NetworkConstants.acceptKey)
-//            urlRequest.setValue(NetworkConstants.contentTypeValue, forHTTPHeaderField: NetworkConstants.contentTypeKey)
             urlRequest.httpBody = dtoEncoded
         }
-        
-//        urlRequest.setValue(NetworkConstants.tokenValue, forHTTPHeaderField: NetworkConstants.tokenKey)
 
         return urlRequest
     }

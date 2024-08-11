@@ -32,6 +32,7 @@
 		841E954F2C689EF4007CD571 /* NewsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E954E2C689EF4007CD571 /* NewsListPresenter.swift */; };
 		841E95522C68B14C007CD571 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 841E95512C68B14C007CD571 /* ProgressHUD */; };
 		841E95542C68B300007CD571 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95532C68B300007CD571 /* ErrorView.swift */; };
+		841E95562C68BD3E007CD571 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95552C68BD3E007CD571 /* UIBlockingProgressHUD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		841E954C2C67E17B007CD571 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		841E954E2C689EF4007CD571 /* NewsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListPresenter.swift; sourceTree = "<group>"; };
 		841E95532C68B300007CD571 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		841E95552C68BD3E007CD571 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				841E95362C67BB62007CD571 /* NetworkClient */,
 				841E95342C679C1A007CD571 /* ReuseIdentifying.swift */,
 				841E95532C68B300007CD571 /* ErrorView.swift */,
+				841E95552C68BD3E007CD571 /* UIBlockingProgressHUD.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				841E95412C67D1EE007CD571 /* InitialNewsRequest.swift in Sources */,
 				841E953C2C67BBCF007CD571 /* NetworkTask.swift in Sources */,
 				841E95382C67BB8D007CD571 /* NetworkClient.swift in Sources */,
+				841E95562C68BD3E007CD571 /* UIBlockingProgressHUD.swift in Sources */,
 				841E954D2C67E17B007CD571 /* NewsModel.swift in Sources */,
 				841E95352C679C1A007CD571 /* ReuseIdentifying.swift in Sources */,
 				841E95092C67754F007CD571 /* AppDelegate.swift in Sources */,

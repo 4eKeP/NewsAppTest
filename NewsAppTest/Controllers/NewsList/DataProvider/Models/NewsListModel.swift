@@ -8,6 +8,6 @@
 import Foundation
 
 struct NewsListModel: Codable {
-    let nextPageID: String
-    let newsList: [NewsModelResult]
+    let results: [NewsModelResult]
+    let nextPage: String
 }
