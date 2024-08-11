@@ -29,7 +29,7 @@ struct NewsModelResult: Codable {
         let news = NewsModel(newsID: self.articleID,
                              image: self.imageURL,
                              title: self.title,
-                             author: self.creator,
+                             author: self.creator?.joined(),
                              createdAt: self.makeDate(body: self),
                              description: self.description,
                              sourceLink: self.link)
@@ -38,7 +38,7 @@ struct NewsModelResult: Codable {
     
     
     private func makeDate(body: NewsModelResult) -> Date {
-        var dateValue = body.pubDate.flatMap { NewsModelResult.dateFormatter.date(from: $0) }
+        let dateValue = body.pubDate.flatMap { NewsModelResult.dateFormatter.date(from: $0) }
         guard let dateValue = dateValue else { return Date()}
         return dateValue
     }

@@ -90,7 +90,8 @@ class NewsListViewController: UIViewController, ErrorView {
 extension NewsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presenter.newsSelected(atRow: indexPath.row)
+        let controller = DetailScreenAssembler().setupDetailScreen(selectedNews: presenter.newsSelected(atRow: indexPath.row))
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

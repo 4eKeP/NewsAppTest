@@ -9,7 +9,7 @@ import Foundation
 
 protocol NewsListPresenterProtocol {
     func loadInitialNews()
-    func newsSelected(atRow: Int)
+    func newsSelected(atRow: Int) -> NewsModel
     func fetchNextPageIfNeeded(indexPath: IndexPath)
 }
 
@@ -28,8 +28,8 @@ final class NewsListPresenter: NewsListPresenterProtocol {
         loadNews()
     }
     
-    func newsSelected(atRow: Int) {
-        
+    func newsSelected(atRow: Int) -> NewsModel {
+        dataProvider.newsList[atRow]
     }
     
     private func loadNews() {

@@ -10,7 +10,7 @@
 		841E95092C67754F007CD571 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95082C67754F007CD571 /* AppDelegate.swift */; };
 		841E950B2C67754F007CD571 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E950A2C67754F007CD571 /* SceneDelegate.swift */; };
 		841E950D2C67754F007CD571 /* NewsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E950C2C67754F007CD571 /* NewsListViewController.swift */; };
-		841E95132C67754F007CD571 /* NewsAppTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 841E95112C67754F007CD571 /* NewsAppTest.xcdatamodeld */; };
+		841E95132C67754F007CD571 /* NewsModelCD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 841E95112C67754F007CD571 /* NewsModelCD.xcdatamodeld */; };
 		841E95152C677551007CD571 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 841E95142C677551007CD571 /* Assets.xcassets */; };
 		841E95202C6784D6007CD571 /* ControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E951F2C6784D6007CD571 /* ControllerFactory.swift */; };
 		841E95222C67852B007CD571 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95212C67852B007CD571 /* TabBarController.swift */; };
@@ -33,6 +33,10 @@
 		841E95522C68B14C007CD571 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 841E95512C68B14C007CD571 /* ProgressHUD */; };
 		841E95542C68B300007CD571 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95532C68B300007CD571 /* ErrorView.swift */; };
 		841E95562C68BD3E007CD571 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95552C68BD3E007CD571 /* UIBlockingProgressHUD.swift */; };
+		841E95592C68FDE6007CD571 /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95582C68FDE6007CD571 /* DetailedViewController.swift */; };
+		841E955B2C690281007CD571 /* DetailedViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E955A2C690281007CD571 /* DetailedViewControllerPresenter.swift */; };
+		841E955F2C691A64007CD571 /* DetailScreenAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E955E2C691A64007CD571 /* DetailScreenAssembler.swift */; };
+		841E95622C692E28007CD571 /* CDProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95612C692E28007CD571 /* CDProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +66,10 @@
 		841E954E2C689EF4007CD571 /* NewsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListPresenter.swift; sourceTree = "<group>"; };
 		841E95532C68B300007CD571 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		841E95552C68BD3E007CD571 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
+		841E95582C68FDE6007CD571 /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
+		841E955A2C690281007CD571 /* DetailedViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewControllerPresenter.swift; sourceTree = "<group>"; };
+		841E955E2C691A64007CD571 /* DetailScreenAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreenAssembler.swift; sourceTree = "<group>"; };
+		841E95612C692E28007CD571 /* CDProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +111,7 @@
 				841E95332C679BF3007CD571 /* Services */,
 				841E95142C677551007CD571 /* Assets.xcassets */,
 				841E95192C677551007CD571 /* Info.plist */,
-				841E95112C67754F007CD571 /* NewsAppTest.xcdatamodeld */,
+				841E95112C67754F007CD571 /* NewsModelCD.xcdatamodeld */,
 			);
 			path = NewsAppTest;
 			sourceTree = "<group>";
@@ -136,7 +144,6 @@
 		841E952C2C67943E007CD571 /* NewsList */ = {
 			isa = PBXGroup;
 			children = (
-				841E953F2C67D1C5007CD571 /* DataProvider */,
 				841E950C2C67754F007CD571 /* NewsListViewController.swift */,
 				841E954E2C689EF4007CD571 /* NewsListPresenter.swift */,
 				841E95312C679BB5007CD571 /* NewsListCell.swift */,
@@ -147,6 +154,8 @@
 		841E952D2C679456007CD571 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				841E953F2C67D1C5007CD571 /* DataProvider */,
+				841E95572C68FDC7007CD571 /* DetailedView */,
 				841E952C2C67943E007CD571 /* NewsList */,
 				841E952B2C67942A007CD571 /* Favourites */,
 				841E952A2C679415007CD571 /* TabBar */,
@@ -157,6 +166,7 @@
 		841E95332C679BF3007CD571 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				841E95602C692E0F007CD571 /* CDProvider */,
 				841E95362C67BB62007CD571 /* NetworkClient */,
 				841E95342C679C1A007CD571 /* ReuseIdentifying.swift */,
 				841E95532C68B300007CD571 /* ErrorView.swift */,
@@ -203,6 +213,24 @@
 				841E954C2C67E17B007CD571 /* NewsModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		841E95572C68FDC7007CD571 /* DetailedView */ = {
+			isa = PBXGroup;
+			children = (
+				841E95582C68FDE6007CD571 /* DetailedViewController.swift */,
+				841E955A2C690281007CD571 /* DetailedViewControllerPresenter.swift */,
+				841E955E2C691A64007CD571 /* DetailScreenAssembler.swift */,
+			);
+			path = DetailedView;
+			sourceTree = "<group>";
+		};
+		841E95602C692E0F007CD571 /* CDProvider */ = {
+			isa = PBXGroup;
+			children = (
+				841E95612C692E28007CD571 /* CDProvider.swift */,
+			);
+			path = CDProvider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +315,7 @@
 				841E953E2C67BBE0007CD571 /* NetworkConstants.swift in Sources */,
 				841E95482C67D7C0007CD571 /* NewsListModel.swift in Sources */,
 				841E950D2C67754F007CD571 /* NewsListViewController.swift in Sources */,
+				841E95622C692E28007CD571 /* CDProvider.swift in Sources */,
 				841E95462C67D555007CD571 /* NewsListDataProvider.swift in Sources */,
 				841E95542C68B300007CD571 /* ErrorView.swift in Sources */,
 				841E954B2C67D817007CD571 /* NewsModelResult.swift in Sources */,
@@ -295,14 +324,17 @@
 				841E95382C67BB8D007CD571 /* NetworkClient.swift in Sources */,
 				841E95562C68BD3E007CD571 /* UIBlockingProgressHUD.swift in Sources */,
 				841E954D2C67E17B007CD571 /* NewsModel.swift in Sources */,
+				841E955B2C690281007CD571 /* DetailedViewControllerPresenter.swift in Sources */,
 				841E95352C679C1A007CD571 /* ReuseIdentifying.swift in Sources */,
 				841E95092C67754F007CD571 /* AppDelegate.swift in Sources */,
 				841E954F2C689EF4007CD571 /* NewsListPresenter.swift in Sources */,
 				841E95432C67D4BB007CD571 /* NextPageNewsRequest.swift in Sources */,
+				841E95592C68FDE6007CD571 /* DetailedViewController.swift in Sources */,
 				841E95292C678E8A007CD571 /* FavouritesViewController.swift in Sources */,
+				841E955F2C691A64007CD571 /* DetailScreenAssembler.swift in Sources */,
 				841E95202C6784D6007CD571 /* ControllerFactory.swift in Sources */,
 				841E95222C67852B007CD571 /* TabBarController.swift in Sources */,
-				841E95132C67754F007CD571 /* NewsAppTest.xcdatamodeld in Sources */,
+				841E95132C67754F007CD571 /* NewsModelCD.xcdatamodeld in Sources */,
 				841E953A2C67BB9D007CD571 /* NetworkRequest.swift in Sources */,
 				841E95322C679BB5007CD571 /* NewsListCell.swift in Sources */,
 				841E950B2C67754F007CD571 /* SceneDelegate.swift in Sources */,
@@ -547,13 +579,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		841E95112C67754F007CD571 /* NewsAppTest.xcdatamodeld */ = {
+		841E95112C67754F007CD571 /* NewsModelCD.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				841E95122C67754F007CD571 /* NewsAppTest.xcdatamodel */,
 			);
 			currentVersion = 841E95122C67754F007CD571 /* NewsAppTest.xcdatamodel */;
-			path = NewsAppTest.xcdatamodeld;
+			path = NewsModelCD.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

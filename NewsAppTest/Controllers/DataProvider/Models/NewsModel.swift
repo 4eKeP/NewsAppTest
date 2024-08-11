@@ -11,7 +11,7 @@ struct NewsModel: Codable, Hashable {
     let newsID: String
     let image: URL?
     let title: String
-    let author: [String]?
+    let author: String?
     let createdAt: Date
     let description: String?
     let sourceLink: URL

@@ -40,7 +40,7 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = .black
+        label.textColor = .label
         return label
     }()
     
@@ -49,16 +49,16 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = .black
+        label.textColor = .label
         return label
     }()
     
-    lazy var descriptionLabel = {
+    lazy var titleLabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        label.textColor = .black
+        label.textColor = .label
         return label
     }()
     
@@ -76,9 +76,9 @@ final class NewsListCell: UITableViewCell, ReuseIdentifying {
     }
     
     func makeCell(news: NewsModel) {
-        authorLabel.text = "\(String(localized: "Cell.Author")): \(news.author?.joined() ?? (String(localized: "Cell.NoAuthor")))"
+        authorLabel.text = "\(String(localized: "Cell.Author")): \(news.author ?? (String(localized: "Cell.NoAuthor")))"
         dateLabel.text = "\(String(localized: "Cell.Date")): \(dateFormatter.string(from: news.createdAt))"
-        descriptionLabel.text = "\(String(localized: "Cell.Title")): \(news.title)"
+        titleLabel.text = "\(String(localized: "Cell.Title")): \(news.title)"
         
         if news.image != nil {
             cellImage.kf.setImage(with: news.image) { [weak self] result in
@@ -103,7 +103,7 @@ private extension NewsListCell {
         cellView.addSubview(cellImage)
         cellView.addSubview(authorLabel)
         cellView.addSubview(dateLabel)
-        cellView.addSubview(descriptionLabel)
+        cellView.addSubview(titleLabel)
         contentView.backgroundColor = .systemBackground
         
         NSLayoutConstraint.activate([
@@ -126,12 +126,12 @@ private extension NewsListCell {
             dateLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: cellLabelSpacing),
             dateLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -cellLabelSpacing),
             dateLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: cellLabelSpacing),
-            dateLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -cellLabelSpacing),
+            dateLabel.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -cellLabelSpacing),
             
-            descriptionLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: cellLabelSpacing),
-            descriptionLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -cellLabelSpacing),
-            descriptionLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: cellLabelSpacing),
-            descriptionLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -cellLabelSpacing)
+            titleLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: cellLabelSpacing),
+            titleLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -cellLabelSpacing),
+            titleLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: cellLabelSpacing),
+            titleLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -cellLabelSpacing)
         ])
     }
 }
