@@ -16,11 +16,21 @@ enum NewsCDError: Error {
     case decodingError
 }
 
-final class CDProvider: NSObject {
+protocol CDProviderProtocol: AnyObject {
+    var savedNews: [NewsModel] { get }
+    func chekIfInCDAndSaveIfNeed(news: NewsModel)
+    func chekIfInCD(news: NewsModel) -> Bool
+}
+
+final class CDProvider: NSObject, CDProviderProtocol {
     private let context: NSManagedObjectContext
     private var fetchedResultsController: NSFetchedResultsController<NewsModelCD>
     
-    var savedNews: [NewsModel]?
+    var savedNews: [NewsModel] {
+        guard let objects = self.fetchedResultsController.fetchedObjects,
+              let news = try? objects.map({try self.news(from: $0)}) else { return [] }
+        return news
+    }
     
     convenience override init() {
         guard let application = UIApplication.shared.delegate as? AppDelegate else {
@@ -31,6 +41,7 @@ final class CDProvider: NSObject {
     }
     
     init(context: NSManagedObjectContext) {
+        print("start init")
         self.context = context
         
         let request = NewsModelCD.fetchRequest()
@@ -43,9 +54,11 @@ final class CDProvider: NSObject {
                                                     cacheName: nil)
         self.fetchedResultsController = controller
         super.init()
+//        let news = fetchNewsCD()
+//        savedNews = news
         controller.delegate = self
         try? controller.performFetch()
-        savedNews = fetchNewsCD()
+        
     }
     
     func fetchNewsCD() -> [NewsModel] {
@@ -81,6 +94,15 @@ final class CDProvider: NSObject {
                   sourceLink: sourceLink)
     }
     
+    func chekIfInCDAndSaveIfNeed(news: NewsModel) {
+        if chekIfInCD(news: news) {
+            deleteNewsBy(news: news)
+        } else {
+            try? addNew(news: news)
+        }
+        
+    }
+    
     func addNew(news: NewsModel) throws {
         let newsInCD = NewsModelCD(context: context)
         newsInCD.newsID = news.newsID
@@ -91,11 +113,18 @@ final class CDProvider: NSObject {
         newsInCD.sourceLink = news.sourceLink
         newsInCD.title = news.title
         saveContext()
+//        savedNews = fetchNewsCD()
     }
     
     func deleteNewsBy(news: NewsModel) {
         self.fetchedResultsController.fetchedObjects?.filter { $0.newsID == news.newsID}.forEach { context.delete($0)}
         saveContext()
+//        savedNews = fetchNewsCD()
+    }
+    
+    func chekIfInCD(news: NewsModel) -> Bool {
+        let arreyOfnews = self.fetchedResultsController.fetchedObjects?.first(where: { $0.newsID == news.newsID})
+        return arreyOfnews != nil
     }
 }
 

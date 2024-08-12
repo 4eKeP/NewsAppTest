@@ -20,7 +20,7 @@ final class DetailedViewController: UIViewController {
     }()
     
     private lazy var favButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(systemName: "star.fill"),
+        let button = UIBarButtonItem(image: UIImage(systemName: "star"),
                                      style: .plain,
                                      target: self,
                                      action: #selector(favButtonPressed))
@@ -49,15 +49,6 @@ final class DetailedViewController: UIViewController {
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
-    
-    //    private lazy var titleLabel: UILabel = {
-    //        let label = UILabel()
-    //        label.textColor = .label
-    //        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-    //        label.numberOfLines = 0
-    //        label.translatesAutoresizingMaskIntoConstraints = false
-    //        return label
-    //    }()
     
     private lazy var authorLabel = {
         let label = UILabel()
@@ -132,11 +123,11 @@ final class DetailedViewController: UIViewController {
     }
     
     @objc func favButtonPressed() {
-        
+        favButton.isEnabled = false
+        presenter.favButtonPressed()
     }
     
     @objc func authorLinkTapped() {
-        print("tap")
         presenter.authorLinkTapped()
     }
     
@@ -147,6 +138,15 @@ final class DetailedViewController: UIViewController {
     func configNavBackButton() {
         navigationController?.navigationBar.tintColor = .label
         navigationItem.leftBarButtonItem = backButton
+    }
+    
+    func setStateOfFavButton(inCD: Bool) {
+        if inCD {
+            favButton.image = UIImage(systemName: "star.fill")
+        } else {
+            favButton.image = UIImage(systemName: "star")
+        }
+        favButton.isEnabled = true
     }
 }
 

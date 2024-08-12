@@ -37,6 +37,7 @@
 		841E955B2C690281007CD571 /* DetailedViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E955A2C690281007CD571 /* DetailedViewControllerPresenter.swift */; };
 		841E955F2C691A64007CD571 /* DetailScreenAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E955E2C691A64007CD571 /* DetailScreenAssembler.swift */; };
 		841E95622C692E28007CD571 /* CDProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95612C692E28007CD571 /* CDProvider.swift */; };
+		841E95642C6A5488007CD571 /* FavouritesViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E95632C6A5488007CD571 /* FavouritesViewPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		841E955A2C690281007CD571 /* DetailedViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewControllerPresenter.swift; sourceTree = "<group>"; };
 		841E955E2C691A64007CD571 /* DetailScreenAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreenAssembler.swift; sourceTree = "<group>"; };
 		841E95612C692E28007CD571 /* CDProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDProvider.swift; sourceTree = "<group>"; };
+		841E95632C6A5488007CD571 /* FavouritesViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				841E95282C678E8A007CD571 /* FavouritesViewController.swift */,
+				841E95632C6A5488007CD571 /* FavouritesViewPresenter.swift */,
 			);
 			path = Favourites;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				841E95542C68B300007CD571 /* ErrorView.swift in Sources */,
 				841E954B2C67D817007CD571 /* NewsModelResult.swift in Sources */,
 				841E95412C67D1EE007CD571 /* InitialNewsRequest.swift in Sources */,
+				841E95642C6A5488007CD571 /* FavouritesViewPresenter.swift in Sources */,
 				841E953C2C67BBCF007CD571 /* NetworkTask.swift in Sources */,
 				841E95382C67BB8D007CD571 /* NetworkClient.swift in Sources */,
 				841E95562C68BD3E007CD571 /* UIBlockingProgressHUD.swift in Sources */,

@@ -28,7 +28,10 @@ final class ControllerFactory {
                 vc: newsListController)
             return newsListNavItem
         case .favouritesViewController:
-            let favouritesController = FavouritesViewController()
+            let CDDataProvider = CDProvider()
+            let favPresenter = FavouritesViewPresenter(dataProvider: CDDataProvider)
+            let favouritesController = FavouritesViewController(presenter: favPresenter)
+            favPresenter.controller = favouritesController
             let favouritesNavItem = createNavigation(
                 with: String(localized: "Tab.FavTitle"),
                 and: UIImage(systemName: "star"),

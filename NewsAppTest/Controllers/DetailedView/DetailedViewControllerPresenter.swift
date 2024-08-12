@@ -12,16 +12,20 @@ protocol DetailedViewControllerPresenterProtocol {
     var selectedNews: NewsModel { get }
     func backButtonTapped()
     func authorLinkTapped()
+    func favButtonPressed()
     func show()
 }
 
 final class DetailedViewControllerPresenter: DetailedViewControllerPresenterProtocol {
     var selectedNews: NewsModel
     
+    private let cdProvider: CDProviderProtocol
+    
     weak var viewController: DetailedViewController?
     
-    init(selectedNews: NewsModel) {
+    init(selectedNews: NewsModel, cdProvider: CDProviderProtocol) {
         self.selectedNews = selectedNews
+        self.cdProvider = cdProvider
     }
     
     func authorLinkTapped() {
@@ -37,6 +41,19 @@ final class DetailedViewControllerPresenter: DetailedViewControllerPresenterProt
     
     func show(){
         viewController?.show(selectedNews: selectedNews)
+        checkFavButtonStatus(news: selectedNews)
+    }
+    
+    func checkFavButtonStatus(news: NewsModel) {
+        let status = cdProvider.chekIfInCD(news: news)
+        print(status)
+        viewController?.setStateOfFavButton(inCD: status)
+        
+    }
+    
+    func favButtonPressed() {
+        cdProvider.chekIfInCDAndSaveIfNeed(news: selectedNews)
+        checkFavButtonStatus(news: selectedNews)
     }
     
 }

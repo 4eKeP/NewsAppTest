@@ -122,9 +122,6 @@ extension NewsListViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -tableViewSpacing),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -tableViewSpacing),
         ])
-        
-     //   tableView.estimatedRowHeight = 44
-      //  tableView.rowHeight = UITableView.automaticDimension
     }
 }
 
